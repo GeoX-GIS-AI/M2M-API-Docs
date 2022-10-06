@@ -63,10 +63,6 @@ The locations key in the Requst body is a list which can contain multiple lat/ln
 
 The corellationId will be sent back in the response along with the resposne of corresponding lat/lng provided.  
 
-### Postman Sample call
-![Postman](postman_example_new.png)
-
-
 
 ## Hitting API with Python
 1. We will need following libraries to be installed
@@ -158,7 +154,7 @@ Here are the sample request and response
 
 ## Request URL
 ```shell
-https://api.geox-ai.com/api/v2/parcels
+https://api.geox-ai.com/api/v8.2/parcels
 ```
 
 ## Request Body Sample
