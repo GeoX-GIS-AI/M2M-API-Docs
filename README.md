@@ -154,7 +154,7 @@ Here are the sample request and response
 
 ## Request URL
 ```shell
-https://api.geox-ai.com/api/v8.2/parcels
+https://api.geox-ai.com/api/v8.2/platform/parcels
 ```
 
 ## Request Body Sample
