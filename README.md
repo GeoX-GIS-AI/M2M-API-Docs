@@ -41,7 +41,7 @@ Postman is downloadable for free use from here and supported with lots of develo
 
 After downloading Postman follow the instructions below to get started.
 1. Create a new request.
-2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.2/platform/parcels
+2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.2/parcels
 3. Select the POST HTTP method
 4. Setup authorization as mentioned above.
 5. Go to the Body section and select the raw button then from the format dropdown select the JSON as your body format.
@@ -76,7 +76,7 @@ from aws_requests_auth.aws_auth import AWSRequestsAuth
 
 
 def m2m_request(access_key, secret_key, lat, lng):
-    api_url = "https://api.geox-ai.com/api/v8.2/platform/parcels"
+    api_url = "https://api.geox-ai.com/api/v8.2/parcels"
     aws_details = {
         'aws_access_key': access_key,
         'aws_secret_access_key': secret_key,
@@ -110,7 +110,7 @@ if __name__ == '__main__':
 ## Hitting API with cURL
 The API request needs to be signed with AWS Signature Version 4. Please follow this [link](https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html) for more details. 
 ```shell
-curl --location --request POST 'https://api.geox-ai.com/api/v8.2/platform/parcels' \
+curl --location --request POST 'https://api.geox-ai.com/api/v8.2/parcels' \
 --header 'Accept-Encoding: application/gzip' \
 --header 'X-Amz-Content-Sha256: beaead3198f7da1e70d03ab969765e0821b24fc913697e92XXXXXXXXXXXXXXXX' \
 --header 'X-Amz-Date: 20220622T064739Z' \
@@ -146,7 +146,7 @@ wget --no-check-certificate --quiet \
         }
     ]
 }' \
-   'https://api.geox-ai.com/api/v8.2/platform/parcels'
+   'https://api.geox-ai.com/api/v8.2/parcels'
 ```
 
 # Request and Response Samples
@@ -154,7 +154,7 @@ Here are the sample request and response
 
 ## Request URL
 ```shell
-https://api.geox-ai.com/api/v8.2/platform/parcels
+https://api.geox-ai.com/api/v8.2/parcels
 ```
 
 ## Request Body Sample
