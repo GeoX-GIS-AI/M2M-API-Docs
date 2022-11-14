@@ -44,25 +44,8 @@ After downloading Postman follow the instructions below to get started.
 2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.3/parcels
 3. Select the POST HTTP method
 4. Setup authorization as mentioned above.
-5. Go to the Body section and select the raw button then from the format dropdown select the JSON as your body format.
-6. Now put your lat/lng in the following format
-```json
-{
-    "locations": [
-        {
-            "lat": 33.4469749,
-            "lng": -86.8209358,
-            "corellationId": "a correlation id"
-        }
-    ]
-}
-```
+5. Now put your lat/lng in the Params section with `lat` and `lng` keys.
 6. Finally, hit the API.
-
-The locations key in the Requst body is a list which can contain multiple lat/lng values simultaneously. 
-
-The corellationId will be sent back in the response along with the resposne of corresponding lat/lng provided.  
-
 
 ## Hitting API with Python
 1. We will need following libraries to be installed
@@ -85,17 +68,11 @@ def m2m_request(access_key, secret_key, lat, lng):
         'aws_service': "execute-api"
     }
     auth = AWSRequestsAuth(**aws_details)
-    request_body = {
-        "locations": [
-            {
-                "lat": lat,
-                "lng": lng,
-                "corellationId": "1e6a747f11f16540a27e"
-            },
-            # more lat/lng values can be added here
-        ]
+    request_params = {
+        "lat": lat,
+        "lng": lng
     }
-    res = requests.post(api_url, auth=auth, json=request_body)
+    res = requests.get(api_url, auth=auth, params=request_params)
     assert res.status_code == 200, f"Request failed with status: {res.status_code}"
     res_data = res.json()
     return res_data
@@ -110,43 +87,19 @@ if __name__ == '__main__':
 ## Hitting API with cURL
 The API request needs to be signed with AWS Signature Version 4. Please follow this [link](https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html) for more details. 
 ```shell
-curl --location --request POST 'https://api.geox-ai.com/api/v8.3/parcels' \
---header 'Accept-Encoding: application/gzip' \
---header 'X-Amz-Content-Sha256: beaead3198f7da1e70d03ab969765e0821b24fc913697e92XXXXXXXXXXXXXXXX' \
---header 'X-Amz-Date: 20220622T064739Z' \
---header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGXXXXXXXXXX/20220622/us-east-1/execute-api/aws4_request, SignedHeaders=accept-encoding;host;x-amz-content-sha256;x-amz-date, Signature=7982cac59526dc4c6915244d110ca6cc12d3a03e6588b086XXXXXXXXXXXXXXXX' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "locations": [
-        {
-            "lat": 33.4469749,
-            "lng": -86.8209358,
-            "corellationId": "1e6a747f11f16540a27e"
-        }
-    ]
-}'
+curl --location --request GET 'https://api.geox-ai.com/api/v8.3/parcels?lat=33.970191989230656&lng=-84.34141973584119' \
+--header 'X-Amz-Date: 20221114T085525Z' \
+--header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=9297d31a62bdfd96c3d78a3a98a652b8270b80d02b9c2252a9d0a2d8a4e73c6e'
 ```
 
 ## Hitting API with wget
 ```shell
 wget --no-check-certificate --quiet \
-  --method POST \
+  --method GET \
   --timeout=0 \
-  --header 'Accept-Encoding: application/gzip' \
-  --header 'X-Amz-Content-Sha256: beaead3198f7da1e70d03ab969765e0821b24fc913697e92XXXXXXXXXXXXXXXX' \
-  --header 'X-Amz-Date: 20220622T065830Z' \
-  --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITXXXXXXXXXXXX/20220622/us-east-1/execute-api/aws4_request, SignedHeaders=accept-encoding;host;x-amz-content-sha256;x-amz-date, Signature=b797c5a5c5fe9295067c83b2d3585e7a4362f26d8bfaXXXXXXXXXXXXXXXXXXXX' \
-  --header 'Content-Type: application/json' \
-  --body-data '{
-    "locations": [
-        {
-            "lat": 33.4469749,
-            "lng": -86.8209358,
-            "corellationId": "1e6a747f11f16540a27e"
-        }
-    ]
-}' \
-   'https://api.geox-ai.com/api/v8.3/parcels'
+  --header 'X-Amz-Date: 20221114T085525Z' \
+  --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=9297d31a62bdfd96c3d78a3a98a652b8270b80d02b9c2252a9d0a2d8a4e73c6e' \
+   'https://api.geox-ai.com/api/v8.3/parcels?lat=33.970191989230656&lng=-84.34141973584119'
 ```
 
 # Request and Response Samples
@@ -157,17 +110,9 @@ Here are the sample request and response
 https://api.geox-ai.com/api/v8.3/parcels
 ```
 
-## Request Body Sample
-```json
-{
-    "locations": [
-        {
-            "lat": 33.4469749,
-            "lng": -86.8209358,
-            "corellationId": "1e6a747f11f16540a27e"
-        }
-    ]
-}
+## Request Query params Sample
+```shell
+lat=33.970191989230656&lng=-84.34141973584119
 ```
 
 ## Response Sample
@@ -175,61 +120,38 @@ https://api.geox-ai.com/api/v8.3/parcels
 {
     "data": [
         {
-            "corellationId": "1e6a747f11f16540a27e",
-            "results": [
-                {
-                    "footprint_count_p": "1",
-                    "solar_panel_area_b": null,
-                    "air_conditioner_count_b": null,
-                    "parcel_area": "336505.7262927573",
-                    "temporary_pool_area_p": null,
-                    "roof_type": "flat",
-                    "pool_area_p": null,
-                    "footprint_over_p": "0.47",
-                    "pool_count_p": null,
-                    "footprint_area_p": "1571.0940800277797",
-                    "skylight_count_b": null,
-                    "dis_coast_b": "-1",
-                    "dis_water_body_b": "2.1262471890782795",
-                    "footprint_area": "1571.0469118150065",
-                    "rust_area_b": null,
-                    "ponding_area_b": null,
-                    "tarp_area_b": null,
-                    "trampoline_count_p": null,
-                    "air_conditioner_area_b": null,
-                    "roof_condition": "good",
-                    "slope_area_b": "719.8874491111119",
-                    "building_height": null,
-                    "roof_material": "concrete",
-                    "number_of_floors": null
-                },
-                {
-                    "footprint_count_p": "1",
-                    "solar_panel_area_b": "121.52406250694459",
-                    "air_conditioner_count_b": "81",
-                    "parcel_area": "336505.7262927573",
-                    "temporary_pool_area_p": null,
-                    "roof_type": "flat",
-                    "pool_area_p": null,
-                    "footprint_over_p": "0.47",
-                    "pool_count_p": null,
-                    "footprint_area_p": "1571.0940800277797",
-                    "skylight_count_b": "70",
-                    "dis_coast_b": "-1",
-                    "dis_water_body_b": "1.9416754592802998",
-                    "footprint_area": "339361.6067604386",
-                    "rust_area_b": null,
-                    "ponding_area_b": null,
-                    "tarp_area_b": "123.89211332638904",
-                    "trampoline_count_p": null,
-                    "air_conditioner_area_b": "4441.817505236117",
-                    "roof_condition": "damaged",
-                    "slope_area_b": "1836.3157718055577",
-                    "building_height": 28.25,
-                    "roof_material": "concrete",
-                    "number_of_floors": "3"
-                }
-            ]
+            "footprint_area_b": "2773.639996299906",
+            "state_addr": "georgia",
+            "roof_type_b": "mix",
+            "roof_material_b": "shingle",
+            "roof_condition_b": "good",
+            "solar_panel_area_b": null,
+            "air_conditioner_count_b": null,
+            "ponding_area_b": null,
+            "tarp_area_b": null,
+            "pool_area_p": null,
+            "number_of_floors_b": 4.0,
+            "dis_tree_b": null,
+            "dis_vegetation_b": null,
+            "vegetation_zone_1_b": null,
+            "vegetation_zone_2_b": null,
+            "vegetation_zone_3_b": null,
+            "vegetation_zone_4_b": null,
+            "tree_zone_1_b": null,
+            "tree_zone_2_b": null,
+            "tree_zone_3_b": null,
+            "tree_zone_4_b": null,
+            "shrub_zone_1_b": null,
+            "shrub_zone_2_b": null,
+            "shrub_zone_3_b": null,
+            "shrub_zone_4_b": null,
+            "lon": null,
+            "lat": null,
+            "tree_overhang_b": null,
+            "square_footage_b": 11094.559985199625,
+            "addr": "1117 Whitehall Pointe, Sandy Springs, GA 30338",
+            "roof_condition_prior_b": null,
+            "roof_condition_prior_date_b": "2022-11-14"
         }
     ],
     "msg": "OK",
