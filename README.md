@@ -26,7 +26,7 @@ For more information, see [Signing requests](https://docs.aws.amazon.com/apigate
 
 # HTTP response codes
 - 200 — Success.
-- 400 — Bad Request There was a validation error with the input. Most probably you missed to provide lat/lng or corellationId in the request body.
+- 400 — Bad Request There was a validation error with the input. Most probably you missed to provide lat/lng or correlationId in the request body.
 - 401 — You Signging process was failed. Probably due to incorrect AWS Access Key/Secret Key.
 - 403 — Forbidden.
 - 404 — Not Found One or more of the required resources was not found, please make sure you entered correct endpoint URL.
@@ -55,7 +55,7 @@ After downloading Postman follow the instructions below to get started.
 3. Select the POST HTTP method
 4. Setup authorization as mentioned above.
 5. Now go to the Body section, select the raw radio button and select JSON from the dropdown.
-6. Now put your lat/lng or address in the Body section with `lat` and `lng`  and `address` keys along with `corellationId` key.
+6. Now put your lat/lng or address in the Body section with `lat` and `lng`  and `address` keys along with `correlationId` key.
 7. You can add multiple locations in the body section. Please refer to API documentation for more details (link at the end of this document).
 8. Finally, hit the API.
 
@@ -126,25 +126,25 @@ def m2m_locations_batch(access_key, secret_key, locations):
 
 if __name__ == '__main__':
     # Calling single location API with lat/lng
-    m2m_response = m2m_request("YOUR_API_KEY", "YOUR_API_SECRET",
+    m2m_response = m2m_request_single_location("YOUR_API_KEY", "YOUR_API_SECRET",
                                lat=45.6696163800542, lng=-122.5038830583887)
     print(json.dumps(m2m_response, indent=2))
 
     # Calling single location API with address
-    m2m_response = m2m_request("YOUR_API_KEY", "YOUR_API_SECRET",
+    m2m_response = m2m_request_single_location("YOUR_API_KEY", "YOUR_API_SECRET",
                                address="123 Main St, Portland, OR 97204")
     print(json.dumps(m2m_response, indent=2))
 
     # Calling batch location API
-    locations = [ # Each location object should contain lat/lng or address along with corellationId
+    locations = [ # Each location object should contain lat/lng or address along with correlationId
         {
             "lat": 45.6696163800542,
             "lng": -122.5038830583887,
-            "corellationId": "123"
+            "correlationId": "123"
         },
         {
             "address": "123 Main St, Portland, OR 97204",
-            "corellationId": "789"
+            "correlationId": "789"
         }
     ]
     m2m_response = m2m_locations_batch(access_key, secret_key, locations)
@@ -173,11 +173,11 @@ curl --location --request POST 'https://api.geox-ai.com/api/v8.3/parcels' \
         {
             "lat": 45.6696163800542,
             "lng": -122.5038830583887,
-            "corellationId": "123"
+            "correlationId": "123"
         },
         {
             "address": "123 Main St, Portland, OR 97204",
-            "corellationId": "789"
+            "correlationId": "789"
         }
     ]
 }'
@@ -208,11 +208,11 @@ wget --no-check-certificate --quiet \
         {
             "lat": 45.6696163800542,
             "lng": -122.5038830583887,
-            "corellationId": "123"
+            "correlationId": "123"
         },
         {
             "address": "123 Main St, Portland, OR 97204",
-            "corellationId": "789"
+            "correlationId": "789"
         }
     ]
 }' \
@@ -245,11 +245,11 @@ address=123 Main St, Portland, OR 97204
         {
             "lat": 45.6696163800542,
             "lng": -122.5038830583887,
-            "corellationId": "123"
+            "correlationId": "123"
         },
         {
             "address": "123 Main St, Portland, OR 97204",
-            "corellationId": "789"
+            "correlationId": "789"
         }
     ]
 }
@@ -307,7 +307,7 @@ address=123 Main St, Portland, OR 97204
 {
     "data": [
         {
-            "corellationId": "123",
+            "correlationId": "123",
             "results": [
                 {
                     "footprint_area_b": "108.8532219525221",
@@ -380,7 +380,7 @@ address=123 Main St, Portland, OR 97204
             ]
         },
         {
-            "corellationId": "789",
+            "correlationId": "789",
             "results": [
                 {
                     "footprint_area_b": "16562.97771247862",
