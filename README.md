@@ -43,7 +43,7 @@ After downloading Postman follow the instructions below to get started.
 
 => Single Location API with GET method
 1. Create a new request.
-2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.3/parcels
+2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.4/parcels
 3. Select the GET HTTP method
 4. Setup authorization as mentioned above.
 5. Now put your lat/lng or address in the Params section with `lat` and `lng`  and `address` keys.
@@ -51,7 +51,7 @@ After downloading Postman follow the instructions below to get started.
 
 => Batch Location API with POST method
 1. Create a new request.
-2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.3/parcels
+2. In the Request URL field, paste your API's invoke URL which is https://api.geox-ai.com/api/v8.4/parcels
 3. Select the POST HTTP method
 4. Setup authorization as mentioned above.
 5. Now go to the Body section, select the raw radio button and select JSON from the dropdown.
@@ -82,7 +82,7 @@ def m2m_request_single_location(access_key, secret_key, lat=None, lng=None, addr
     :return: Response of the API
     """
     assert (lat and lng) or address, "Either lat/lng or address is required."
-    api_url = "https://api.geox-ai.com/api/v8.3/parcels"
+    api_url = "https://api.geox-ai.com/api/v8.4/parcels"
     aws_details = {
         'aws_access_key': access_key,
         'aws_secret_access_key': secret_key,
@@ -106,7 +106,7 @@ def m2m_request_single_location(access_key, secret_key, lat=None, lng=None, addr
     return res_data
 
 def m2m_locations_batch(access_key, secret_key, locations):
-    api_url = "https://api.geox-ai.com/api/v8.3/parcels"
+    api_url = "https://api.geox-ai.com/api/v8.4/parcels"
     aws_details = {
         'aws_access_key': access_key,
         'aws_secret_access_key': secret_key,
@@ -156,14 +156,14 @@ The API request needs to be signed with AWS Signature Version 4. Please follow t
 
 => Single Location API with GET method
 ```shell
-curl --location --request GET 'https://api.geox-ai.com/api/v8.3/parcels?lat=33.970191989230656&lng=-84.34141973584119' \
+curl --location --request GET 'https://api.geox-ai.com/api/v8.4/parcels?lat=33.970191989230656&lng=-84.34141973584119' \
 --header 'X-Amz-Date: 20221114T085525Z' \
 --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=9297d31a62bdfd96c3d78a3a98a652b8270b80d02b9c2252a9d0a2d8a4e73c6e'
 ```
 
 => Batch Location API with POST method
 ```shell
-curl --location --request POST 'https://api.geox-ai.com/api/v8.3/parcels' \
+curl --location --request POST 'https://api.geox-ai.com/api/v8.4/parcels' \
 --header 'X-Amz-Content-Sha256: beaead3198f7da1e70d03ab969765e0821b24fc913697e929e726aeaebf0eba3' \
 --header 'X-Amz-Date: 20221119T095635Z' \
 --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221119/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=406c5062e122356ceec74f1f892e9ab50b94920be7f57220999f4ff1094eebb8' \
@@ -191,7 +191,7 @@ wget --no-check-certificate --quiet \
   --timeout=0 \
   --header 'X-Amz-Date: 20221114T085525Z' \
   --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=9297d31a62bdfd96c3d78a3a98a652b8270b80d02b9c2252a9d0a2d8a4e73c6e' \
-   'https://api.geox-ai.com/api/v8.3/parcels?lat=33.970191989230656&lng=-84.34141973584119'
+   'https://api.geox-ai.com/api/v8.4/parcels?lat=33.970191989230656&lng=-84.34141973584119'
 ```
 
 => Batch Location API with POST method
@@ -216,7 +216,7 @@ wget --no-check-certificate --quiet \
         }
     ]
 }' \
-   'https://api.geox-ai.com/api/v8.3/parcels'
+   'https://api.geox-ai.com/api/v8.4/parcels'
 ```
 
 # Request and Response Samples
@@ -224,7 +224,7 @@ Here are the sample request and response
 
 ## Request URL
 ```shell
-https://api.geox-ai.com/api/v8.3/parcels
+https://api.geox-ai.com/api/v8.4/parcels
 ```
 
 ## Request Query params Sample (Single Location API)
