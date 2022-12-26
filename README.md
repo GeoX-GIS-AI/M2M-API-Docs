@@ -1,12 +1,6 @@
 # Overview
 This API allows you to search properties from our vast range of footprints data.
 
-## Endpoint URL
-The base URL for the API is
-```bash
-https://api.geox-ai.com
-```
-
 # Autorization
 The API requires to be signed with Version 4 signing process of AWS. Here is how we can do it in different ways:
 
