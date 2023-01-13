@@ -53,7 +53,7 @@ After downloading Postman follow the instructions below to get started.
 7. You can add multiple locations in the body section. Please refer to API documentation for more details (link at the end of this document).
 8. Finally, hit the API.
 
-## Hitting API with Python
+## Access API with Python
 1. We will need following libraries to be installed
    - requests
    - aws_requests_auth
@@ -145,7 +145,7 @@ if __name__ == '__main__':
 
 ```
 
-## Hitting API with cURL
+## Access API with cURL
 The API request needs to be signed with AWS Signature Version 4. Please follow this [link](https://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html) for more details.
 
 => Single Location API with GET method
@@ -177,7 +177,7 @@ curl --location --request POST 'https://api.geox-ai.com/api/v8.4/parcels' \
 }'
 ```
 
-## Hitting API with wget
+## Access API with wget
 => Single Location API with GET method
 ```shell
 wget --no-check-certificate --quiet \
