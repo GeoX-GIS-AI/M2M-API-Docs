@@ -152,7 +152,7 @@ The API request needs to be signed with AWS Signature Version 4. Please follow t
 ```shell
 curl --location --request GET 'https://api.geox-ai.com/api/v8.4/parcels?lat=33.970191989230656&lng=-84.34141973584119' \
 --header 'X-Amz-Date: 20221114T085525Z' \
---header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=9297d31a62bdfd96c3d78a3a98a652b8270b80d02b9c2252a9d0a2d8a4e73c6e'
+--header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFXXXXXXXXXX/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=021611bd2dba2e3f90bXXXXXXXXXXXXXXXXXXXXXXXXXX'
 ```
 
 => Batch Location API with POST method
@@ -160,7 +160,7 @@ curl --location --request GET 'https://api.geox-ai.com/api/v8.4/parcels?lat=33.9
 curl --location --request POST 'https://api.geox-ai.com/api/v8.4/parcels' \
 --header 'X-Amz-Content-Sha256: beaead3198f7da1e70d03ab969765e0821b24fc913697e929e726aeaebf0eba3' \
 --header 'X-Amz-Date: 20221119T095635Z' \
---header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221119/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=406c5062e122356ceec74f1f892e9ab50b94920be7f57220999f4ff1094eebb8' \
+--header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFXXXXXXX/20221119/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=74891c783cc33192f8d7c9802b2e0df49XXXXXXXXXXXX' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "locations": [
@@ -184,7 +184,7 @@ wget --no-check-certificate --quiet \
   --method GET \
   --timeout=0 \
   --header 'X-Amz-Date: 20221114T085525Z' \
-  --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=9297d31a62bdfd96c3d78a3a98a652b8270b80d02b9c2252a9d0a2d8a4e73c6e' \
+  --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TIXXX/20221114/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-date, Signature=021611bd2dba2e3f90XXX' \
    'https://api.geox-ai.com/api/v8.4/parcels?lat=33.970191989230656&lng=-84.34141973584119'
 ```
 
@@ -195,7 +195,7 @@ wget --no-check-certificate --quiet \
   --timeout=0 \
   --header 'X-Amz-Content-Sha256: beaead3198f7da1e70d03ab969765e0821b24fc913697e929e726aeaebf0eba3' \
   --header 'X-Amz-Date: 20221119T095635Z' \
-  --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2TITFGWE6TFCSUHL/20221119/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=406c5062e122356ceec74f1f892e9ab50b94920be7f57220999f4ff1094eebb8' \
+  --header 'Authorization: AWS4-HMAC-SHA256 Credential=AKIA2XXX/20221119/us-east-1/execute-api/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=74891c783cc331XXX' \
   --header 'Content-Type: application/json' \
   --body-data '{
     "locations": [
